@@ -1,6 +1,8 @@
 import useFormStore from "@/stores/form.store"
-import { ContinueButton } from "../molecules/ContinueButton"
 import { FormEvent } from "react"
+import { ConfirmButton } from "../molecules/ConfirmButton"
+import { Form } from "../atoms/Form"
+import { FormBlock } from "../atoms/FormBlock"
 
 export const ReviewNSubmit = () => {
     const increment = useFormStore( state => state.increment )
@@ -9,8 +11,15 @@ export const ReviewNSubmit = () => {
         e.preventDefault();
         increment()
     }
-    return <form onSubmit={submitHandler}>
-        Review
-        <ContinueButton />
-    </form>
+    return <Form onSubmit={submitHandler}>
+        <FormBlock>
+            <label>Business structure</label>
+        </FormBlock>
+
+        <FormBlock>
+            <label>Contact person</label>
+        </FormBlock>
+
+        <ConfirmButton />
+    </Form>
 }

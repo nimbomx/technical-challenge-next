@@ -1,7 +1,11 @@
 'use client'
 import styled from "styled-components";
 
-export const Select = styled.select`
+interface Props {
+    variant?: 'validated';
+}
+
+export const Select = styled.select<Props>`
     margin-bottom: 16px;
     form.was-validated & {
         &:invalid{

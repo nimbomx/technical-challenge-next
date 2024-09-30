@@ -6,8 +6,6 @@ import { FormEvent, useState } from "react"
 import { company_types } from "@/constants/COMPANY_TYPES"
 import { FormBlock } from "../atoms/FormBlock"
 import { FormGroup } from "../atoms/FormGroup"
-import { Input } from "../atoms/Input"
-import { Select } from "../atoms/Select"
 import { InputWithHelper } from "../molecules/InputWithHelper"
 import { SelectWithHelper } from "../molecules/SelectWithHelper"
 import { Form } from "../atoms/Form"
@@ -39,12 +37,12 @@ export const BusinessStructure = () => {
         </FormBlock>
         <FormBlock>
             <label>Address</label>
-            <Input placeholder="Address line 1"  required/>
-            <Input placeholder="Address line 2 (optional)" />
-            <Input placeholder="City"  required/>
+            <InputWithHelper placeholder="Address line 1"  required/>
+            <InputWithHelper placeholder="Address line 2 (optional)" />
+            <InputWithHelper placeholder="City"  required/>
             <FormGroup>
-                <Input placeholder="State"  required/>
-                <Input placeholder="Zip"  required/>
+                <InputWithHelper placeholder="State"  required/>
+                <InputWithHelper placeholder="Zip"  required/>
             </FormGroup>
         </FormBlock>
 
