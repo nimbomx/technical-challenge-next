@@ -1,6 +1,7 @@
 'use client'
 
 import { Loader } from "@/components/atoms/Loader";
+import { Nav } from "@/components/molecules/Nav";
 import { BusinessStructure } from "@/components/organisms/BusinessStructure";
 import { ContactPerson } from "@/components/organisms/ContactPerson";
 import { ReviewNSubmit } from "@/components/organisms/ReviewNSubmit";
@@ -38,11 +39,7 @@ export default function Home() {
   return (
     <>
       <aside>
-        <ul>
-          <li style={{fontWeight:step===0 ? 'bold' : 'normal' }}>Business structure</li>
-          <li style={{fontWeight:step===1 ? 'bold' : 'normal' }}>Contact person</li>
-          <li style={{fontWeight:step===2 ? 'bold' : 'normal' }}>Review & submit</li>
-        </ul>
+        <Nav />
       </aside>
       <article>
         {formStep}

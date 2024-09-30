@@ -12,12 +12,14 @@ import { Form } from "../atoms/Form"
 
 export const BusinessStructure = () => {
     const increment = useFormStore( state => state.increment )
+    const setStatus = useFormStore( state => state.setStatus )
     const [wasValidated, setWasValidated] = useState(false)
 
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (e.currentTarget.checkValidity()) {
             increment()
+            setStatus('in_progress')
         } else {
             console.log("Formulario no válido");
         }

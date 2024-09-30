@@ -11,4 +11,6 @@ export const Header = styled.header`
   padding-right: var(--space);
   font-weight: 500;
   font-size: 16px;
+  display: flex;
+  gap: 30px;
 `;

@@ -6,10 +6,12 @@ import { FormBlock } from "../atoms/FormBlock"
 
 export const ReviewNSubmit = () => {
     const increment = useFormStore( state => state.increment )
+    const setStatus = useFormStore( state => state.setStatus )
 
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         increment()
+        setStatus("init")
     }
     return <Form onSubmit={submitHandler}>
         <FormBlock>

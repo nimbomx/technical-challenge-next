@@ -6,6 +6,8 @@ interface FormStoreState {
   step: number;
   status: keyof typeof FORM_STATUS;
   increment: () => void;
+  setStep: (step:number) => void;
+  setStatus: (status:keyof typeof FORM_STATUS) => void;
 }
 
 const useFormStore = create<FormStoreState>()(
@@ -14,12 +16,12 @@ const useFormStore = create<FormStoreState>()(
             step: 0,
             status: 'in_progress',
             increment: () => set((state) => {
-                const nextStep = state.step >= 2 ? 0 :state.step + 1
                 return ({ 
-                    step: nextStep,
-                    status: nextStep === 0 ? 'init' : 'in_progress' 
+                    step: state.step >= 2 ? 0 :state.step + 1
                 })
             }),
+            setStep: (step) => set(() => ({ step})),
+            setStatus: (status) => set(() => ({ status }) ),
         }),
         {
             name: 'form-storage',
