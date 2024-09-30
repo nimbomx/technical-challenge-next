@@ -5,7 +5,7 @@ interface Props{
     onClick?: () => void
 }
 export const ContinueButton:FC<Props> = ({onClick}) => {
-    return <Button onClick={onClick}>
+    return <Button onClick={onClick} type="submit">
         Continue 
         <img src="/arrow-left.svg" width={16} height={16} alt="" role="presentation"  />
     </Button>

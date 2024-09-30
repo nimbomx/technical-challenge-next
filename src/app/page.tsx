@@ -44,7 +44,7 @@ export default function Home() {
           <li style={{fontWeight:step===2 ? 'bold' : 'normal' }}>Review & submit</li>
         </ul>
       </aside>
-      <article style={{flex:1, display:"flex", flexDirection:"column", maxWidth: "410px"}}>
+      <article>
         {formStep}
       </article>
     </>
