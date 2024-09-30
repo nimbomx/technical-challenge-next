@@ -2,10 +2,17 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-    background-color: #4A3AFF;
+    background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 5px;
+    font-size: 1em;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 34px;
+    display: flex;
+    font-weight: 400;
+    border-radius: 6px;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 10px;
