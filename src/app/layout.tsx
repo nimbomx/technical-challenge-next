@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import StyledComponentsRegistry from "@/lib/registry";
 import { Inter } from "next/font/google";
-import { Main } from "@/components/Main";
-import { Header } from "@/components/Header";
+import { FormMain } from "@/components/templates/FormMain";
+import { HeaderWithStatus } from "@/components/molecules/HeaderWithStatus";
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,10 +26,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable}`}>
         <StyledComponentsRegistry>
-          <Header>New Company</Header>
-          <Main>
+          <HeaderWithStatus />
+          <FormMain>
             {children}
-          </Main>
+          </FormMain>
         </StyledComponentsRegistry>
       </body>
     </html>

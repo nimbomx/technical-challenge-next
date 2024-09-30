@@ -1,8 +1,8 @@
-import { Button } from "@/components/Button";
+import { Button } from "../atoms/Button";
 import { FC } from "react";
 
 interface Props{
-    onClick: () => void
+    onClick?: () => void
 }
 export const ContinueButton:FC<Props> = ({onClick}) => {
     return <Button onClick={onClick}>

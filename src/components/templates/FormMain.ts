@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 
-export const Main = styled.main`
+export const FormMain = styled.main`
 
   padding-top: 40px;
   padding-left: var(--space);

@@ -1,16 +1,25 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
+import { FORM_STATUS } from '@/constants/FORM_STATUS';
 
 interface FormStoreState {
-  count: number;
+  step: number;
+  status: keyof typeof FORM_STATUS;
   increment: () => void;
 }
 
 const useFormStore = create<FormStoreState>()(
     persist(
         (set) => ({
-            count: 0,
-            increment: () => set((state) => ({ count: state.count + 1 })),
+            step: 0,
+            status: 'in_progress',
+            increment: () => set((state) => {
+                const nextStep = state.step >= 2 ? 0 :state.step + 1
+                return ({ 
+                    step: nextStep,
+                    status: nextStep === 0 ? 'init' : 'in_progress' 
+                })
+            }),
         }),
         {
             name: 'form-storage',

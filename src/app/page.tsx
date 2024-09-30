@@ -1,15 +1,17 @@
 'use client'
 
-import { ContinueButton } from "@/components/ContinueButton";
-import { Loader } from "@/components/Loader";
+import { Loader } from "@/components/atoms/Loader";
+import { BusinessStructure } from "@/components/organisms/BusinessStructure";
+import { ContactPerson } from "@/components/organisms/ContactPerson";
+import { ReviewNSubmit } from "@/components/organisms/ReviewNSubmit";
 import useFormStore from "@/stores/form.store";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
-  const count = useFormStore( state => state.count )
-  const increment = useFormStore( state => state.increment )
+  const step = useFormStore( state => state.step )
+
 
   useEffect(() => {
     setIsMounted(true);
@@ -18,14 +20,32 @@ export default function Home() {
   if (!isMounted) {
     return <Loader>Loading...</Loader>;
   }
-
+  let formStep:ReactNode 
+  switch (step) {
+    case 0:
+      formStep = <BusinessStructure />;
+      break;
+    case 1:
+      formStep =  <ContactPerson />
+      break;
+    case 2:
+      formStep =  <ReviewNSubmit />
+      break;
+    default:
+      formStep =  <div>Error</div>
+      break;
+  }
   return (
     <>
-      <aside>[MENU]</aside>
+      <aside>
+        <ul>
+          <li style={{fontWeight:step===0 ? 'bold' : 'normal' }}>Business structure</li>
+          <li style={{fontWeight:step===1 ? 'bold' : 'normal' }}>Contact person</li>
+          <li style={{fontWeight:step===2 ? 'bold' : 'normal' }}>Review & submit</li>
+        </ul>
+      </aside>
       <article style={{flex:1, display:"flex", flexDirection:"column", maxWidth: "410px"}}>
-        <div>{count}</div>
-        <input type="text" />
-        <ContinueButton onClick={increment} />
+        {formStep}
       </article>
     </>
   );
