@@ -15,9 +15,16 @@ export const Input = styled.input<Props>`
     border-radius: 8px;
     font-size: 1rem;
     font-weight: 400;
-
+    appearance: none;
     padding: 16px;
-
+    &[type="number"]::-webkit-outer-spin-button,
+    &[type="number"]::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    &[type="number"] {
+        -moz-appearance: textfield;
+    }
     &::placeholder{
         color: #757D8A;
     }

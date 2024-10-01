@@ -26,8 +26,6 @@ export const BusinessStructure = () => {
         if (e.currentTarget.checkValidity()) {
             setMaxStep(1)
         } else {
-            console.log("Formulario no válido");
-
             // Focus first invalid field
             const firstInvalidElement = form?.querySelector<HTMLElement>(':invalid');
             firstInvalidElement?.focus();
@@ -64,6 +62,7 @@ export const BusinessStructure = () => {
                     onChange={ e => updateData({address:{...data.address, zip:e}})} 
                     placeholder="Zip"  
                     maxLength={5}
+                    type="number"
                     pattern="\d{5}"
                     helper="Please enter exactly 5 numeric digits."
                     required

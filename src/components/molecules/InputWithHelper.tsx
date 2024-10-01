@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, FC, useRef } from "react";
+import { ChangeEvent, FC, useRef, WheelEvent } from "react";
 import { Input } from "../atoms/Input"
 import { FormHelper } from "../atoms/FormHelper";
 
@@ -21,10 +21,14 @@ export const InputWithHelper:FC<Props> = ({placeholder, required, helper, type, 
             onChange(e.target.value)
         }
     }
+    const handleWheel = () => {
+        if(type === 'number') inputRef.current?.blur() //prevent change number if user scroll over
+    }
     /* eslint-disable @next/next/no-img-element */
     return <>
         <div>
             <Input ref={inputRef} 
+                onWheel={handleWheel}
                 onChange={onChangeHandler}
                 value={value}
                 maxLength={maxLength}
