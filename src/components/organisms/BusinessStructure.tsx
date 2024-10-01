@@ -16,7 +16,6 @@ import { Label } from "../atoms/Label"
 export const BusinessStructure = () => {
     const data = useFormStore( state => state.data )
     const setMaxStep = useFormStore( state => state.setMaxStep )
-    const setStatus = useFormStore( state => state.setStatus )
     const updateData = useFormStore( state => state.updateData )
     const [wasValidated, setWasValidated] = useState(false)
 
@@ -24,7 +23,6 @@ export const BusinessStructure = () => {
         e.preventDefault();
         if (e.currentTarget.checkValidity()) {
             setMaxStep(1)
-            setStatus('in_progress')
         } else {
             console.log("Formulario no válido");
         }

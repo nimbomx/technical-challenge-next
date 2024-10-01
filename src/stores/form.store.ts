@@ -49,6 +49,7 @@ const useFormStore = create<FormStoreState>()(
             setMaxStep: (max_step) => set(() => ({ max_step, step:max_step})),
             setStatus: (status) => set(() => ({ status }) ),
             updateData: (newData) => set((state) => ({
+                status: 'in_progress',
                 data: {
                   ...state.data,
                   ...newData,
