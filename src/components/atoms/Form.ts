@@ -4,5 +4,9 @@ import styled from "styled-components";
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
-    max-width: 410px;
+    width: 100%;
+    max-width: 100%;
+    @media (min-width: 768px) {
+        max-width: 410px;
+    }
 `

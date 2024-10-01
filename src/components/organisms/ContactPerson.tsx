@@ -9,7 +9,9 @@ import { InputWithHelper } from "../molecules/InputWithHelper"
 import { Form } from "../atoms/Form"
 
 export const ContactPerson = () => {
+    const data = useFormStore( state => state.data )
     const increment = useFormStore( state => state.increment )
+    const updateData = useFormStore( state => state.updateData )
     const setStatus = useFormStore( state => state.setStatus )
     const [wasValidated, setWasValidated] = useState(false)
 
@@ -27,17 +29,25 @@ export const ContactPerson = () => {
     return <Form onSubmit={submitHandler} className={wasValidated ? 'was-validated' : ''} noValidate>
         <FormBlock>
             <FormGroup>
-                <InputWithHelper placeholder="First Name"  required/>
-                <InputWithHelper placeholder="Last Name"  required/>
+                <InputWithHelper value={data.contact.firstName}
+                    onChange={ e => updateData({contact:{...data.contact, firstName:e}})}
+                    placeholder="First Name"  required/>
+                <InputWithHelper value={data.contact.lastName} 
+                    onChange={ e => updateData({contact:{...data.contact, lastName:e}})}
+                    placeholder="Last Name"  required/>
             </FormGroup>
         </FormBlock>
         <FormBlock>
             <label>Email</label>
-            <InputWithHelper type="email" placeholder="Email"  required/>
+            <InputWithHelper value={data.contact.email} 
+                onChange={ e => updateData({contact:{...data.contact, email:e}})}
+                type="email" placeholder="Email"  required/>
         </FormBlock>
         <FormBlock>
             <label>Phone</label>
-            <InputWithHelper  placeholder="(000) 000-0000"  required/>
+            <InputWithHelper value={data.contact.phone}  
+                onChange={ e => updateData({contact:{...data.contact, phone:e}})}
+                placeholder="(000) 000-0000"  required/>
         </FormBlock>
 
         <ContinueButton />

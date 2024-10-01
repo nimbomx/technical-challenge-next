@@ -1,6 +1,6 @@
+import { StateType } from "@/types/State.type";
 
-export const states = [
-    [
+export const states:StateType[] = [
         {"name": "Alabama", "abbreviation": "AL"},
         {"name": "Alaska", "abbreviation": "AK"},
         {"name": "Arizona", "abbreviation": "AZ"},
@@ -52,6 +52,5 @@ export const states = [
         {"name": "Wisconsin", "abbreviation": "WI"},
         {"name": "Wyoming", "abbreviation": "WY"}
       ]
-]
   
   

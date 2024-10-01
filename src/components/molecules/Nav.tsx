@@ -4,7 +4,11 @@ import useFormStore from "@/stores/form.store";
 import { useEffect, useState } from "react";
 import styled from "styled-components"
 
-const NavComponent = ({className}:any) => {
+interface Props{
+    className?: string
+}
+
+const NavComponent = ({className}:Props) => {
     const [isMounted, setIsMounted] = useState(false);
     const step = useFormStore( state => state.step )
     const setStep = useFormStore( state => state.setStep )
@@ -25,7 +29,7 @@ const NavComponent = ({className}:any) => {
 
 export const Nav = styled(NavComponent)`
     --dot-width: 26px;
-    --dot-padding: 3px;
+    --dot-padding: 3.5px;
     --space-between: 33px;
     display: flex;
     & > div {

@@ -41,7 +41,7 @@ export default function Home() {
       <aside>
         <Nav />
       </aside>
-      <article>
+      <article style={{flex:1}}>
         {formStep}
       </article>
     </>
