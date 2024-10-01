@@ -2,18 +2,21 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { countries } from "@/constants/COUNTRIES"
+import useFormStore from "@/stores/form.store"
 import { CountryType } from "@/types/Country.type"
 import { ChangeEvent, FC } from "react"
 import styled from "styled-components"
 
-interface Props{
-    country:CountryType,
-    onChange: (country:CountryType) => void
-}
-export const PhoneCodeSelector:FC<Props> = ({country, onChange}) => {
+// interface Props{
+//     country:CountryType,
+//     onChange: (country:CountryType) => void
+// }
+export const PhoneCodeSelector:FC = () => {
+    const country = useFormStore( state => state.country )
+    const setCountry = useFormStore( state => state.setCountry )
 
     const changeCountryHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        onChange(countries.find(c => c.name === e.target.value)!)
+        setCountry(countries.find(c => c.name === e.target.value)!)
     }
     return <>
         <PhoneCodeSelect

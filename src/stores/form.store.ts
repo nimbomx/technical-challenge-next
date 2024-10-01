@@ -2,6 +2,8 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { FORM_STATUS } from '@/constants/FORM_STATUS';
 import { FormData } from '@/types/FormData.type';
+import { countries } from '@/constants/COUNTRIES';
+import { CountryType } from '@/types/Country.type';
 
 interface FormStoreState {
   data: FormData;
@@ -9,7 +11,9 @@ interface FormStoreState {
   message: string;
   max_step: number;
   status: keyof typeof FORM_STATUS;
+  country:CountryType;
   increment: () => void;
+  setCountry: (country:CountryType) => void;
   setStep: (step:number) => void;
   setMaxStep: (max_step:number) => void;
   setMessage: (message:string) => void;
@@ -42,6 +46,7 @@ const useFormStore = create<FormStoreState>()(
             step: 0,
             max_step: 0,
             message: '',
+            country: countries[0],
             status: 'in_progress',
             increment: () => set((state) => {
                 return ({ 
@@ -52,6 +57,7 @@ const useFormStore = create<FormStoreState>()(
             setMaxStep: (max_step) => set(() => ({ max_step, step:max_step})),
             setStatus: (status) => set(() => ({ status }) ),
             setMessage: (message) => set(() => ({ message }) ),
+            setCountry: (country) => set(() => ({ country }) ),
             updateData: (newData) => set((state) => ({
                 status: 'in_progress',
                 data: {
@@ -59,7 +65,7 @@ const useFormStore = create<FormStoreState>()(
                   ...newData,
                 },
             })),
-            clearData: () => set(() => ({data:EMPTY}))
+            clearData: () => set(() => ({data:EMPTY, country:countries[0]}))
         }),
         {
             name: 'form-storage',

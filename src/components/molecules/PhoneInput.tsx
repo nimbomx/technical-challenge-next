@@ -5,6 +5,7 @@ import { countries } from "@/constants/COUNTRIES";
 import { PhoneCodeSelector } from "./PhoneCodeSelector";
 import { formatN, PhoneNumberInput } from "./PhoneNumberInput";
 import styled from "styled-components";
+import useFormStore from "@/stores/form.store";
 
 interface Props{
     helper?:string
@@ -16,7 +17,9 @@ interface Props{
 
 export const PhoneInput:FC<Props> = ({required, helper, value, onChange}) => {
     
-    const [country, setCountry] = useState(countries[0]);
+
+    const country = useFormStore( state => state.country )
+    const setCountry = useFormStore( state => state.setCountry )
     const [formatted, setFormatted] = useState('');
 
     useEffect(() => {
@@ -33,24 +36,15 @@ export const PhoneInput:FC<Props> = ({required, helper, value, onChange}) => {
             setFormatted(formattedValue);
         }
     }
-    const updatePhoneValues = () => {
-        if (value) {
-            const phone_code = value.split(" ")[0];
-            if(country.phone_code != phone_code) setCountry(countries.find(c => c.phone_code === phone_code)!)
-        }
-        updatePhoneNumberValue()
-    }
+
     useEffect(() => {
         updatePhoneNumberValue()
     }, [value]);
 
-    useEffect(() => {
-        updatePhoneValues()
-    }, []);
 
     return <>
         <PhoneCanvas>
-            <PhoneCodeSelector country={country} onChange={setCountry} />
+            <PhoneCodeSelector />
             <PhoneNumberInput value={formatted} helper={helper} required={required} country={country} onChange={onChange} />
         </PhoneCanvas>
     </>
