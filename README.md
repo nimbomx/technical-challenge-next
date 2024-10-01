@@ -21,7 +21,7 @@ process.env.NEXT_PUBLIC_API_ENDPOINT + '/company'
 
 Para probar ejecutar `pnpm dev` o `npm run dev`
 
-contruir para producción `pnpm build` o `npm run build`
+para producción `pnpm build` o `npm run build`
 
 el proyecto puede visualizarse en esta url https://technical-challenge-next.vercel.app/
 

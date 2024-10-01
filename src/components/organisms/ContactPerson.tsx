@@ -2,7 +2,7 @@
 
 import useFormStore from "@/stores/form.store"
 import { ContinueButton } from "../molecules/ContinueButton"
-import { FormEvent, useEffect, useState } from "react"
+import { FormEvent, useState } from "react"
 import { FormBlock } from "../atoms/FormBlock"
 import { FormGroup } from "../atoms/FormGroup"
 import { InputWithHelper } from "../molecules/InputWithHelper"
