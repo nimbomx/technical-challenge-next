@@ -1,5 +1,5 @@
 
-export const company_types = [
+export const company_types: string[] = [
     "Sole Proprietorship",
     "General Partnership (GP)",
     "Limited Partnership (LP)",

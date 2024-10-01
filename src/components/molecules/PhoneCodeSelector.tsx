@@ -33,6 +33,7 @@ export const PhoneCodeSelector:FC<Props> = ({country, onChange}) => {
                     height={20}
                 />
                 <span>{country.phone_code}</span>
+                <img src="/caret-down.svg" width={10} height={5} alt="" role="presentation" />
             </>)}
         </PhoneCodeDisplay>
 
@@ -62,7 +63,7 @@ export const PhoneCodeSelect = styled.select`
     font-size: 1rem;
     height: 30px;
     opacity:0;
-    width:75px;
+    width:95px;
     cursor:pointer;
     z-index:10;
 `

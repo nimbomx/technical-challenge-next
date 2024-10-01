@@ -16,23 +16,6 @@ interface FormStoreState {
   clearData: () => void;
 }
 
-// const EMPTY:FormData = {
-//   name:'Sancrisoft, LLC',
-//   type:'Limited Liability Company',
-//   address:{
-//     line1:'123 Main street',
-//     line2:'Suite 123',
-//     city:'Tampa',
-//     state:'FL',
-//     zip:'33626',
-//   },
-//   contact:{
-//     firstName:'John',
-//     lastName:'Doe',
-//     email:'john@sancrisoft.com',
-//     phone:'02'
-//   }
-// }
 const EMPTY:FormData = {
   name:'',
   type:'',

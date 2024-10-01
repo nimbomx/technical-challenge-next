@@ -17,41 +17,49 @@ interface Props{
 
 export const PhoneNumberInput:FC<Props> = ({value, helper, onChange, country, required}) => {
     const inputRef = useRef<HTMLInputElement>(null);
-    const [rest, setRest] = useState('(000) 000-0000');
+    const [mask, setMask] = useState('(000) 000-0000');
 
     const onChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
         const formattedValue = formatN(e.target.value)
         onChange(country.phone_code +' '+formattedValue)
     }
     useEffect(() => {
-        setRest('(000) 000-0000'.slice(value.length));
+        setMask('(000) 000-0000'.slice(value.length));
     },[value])
 
     return <>
-        <div role="presentation" style={{ position: "absolute", top:"8px", left:"81px", fontFamily: "'Inter', system-ui", fontWeight: "400", fontSize: "16px",
-                pointerEvents: "none",
-                userSelect: "none"
-            }}><span style={{color:"transparent"}}>{value}</span><span style={{color:"#757D8A"}}>{rest}</span></div>
+        <PhoneMask role="presentation">
+            <span>{value}</span>{mask}
+        </PhoneMask>
 
-            <Input ref={inputRef} 
-                style={{
-                    paddingLeft:"80px"
-                }}
-                onChange={onChangeHandler}
-                value={value}
-                maxLength={14}
-                required={required}  
-                pattern="\(\d{3}\) \d{3}-\d{4}"
-                />
+        <Input ref={inputRef} 
+            style={{ paddingLeft:"100px" }}
+            onChange={onChangeHandler}
+            value={value}
+            maxLength={14}
+            required={required}  
+            pattern="\(\d{3}\) \d{3}-\d{4}"
+        />
 
-            { helper && inputRef.current && !inputRef.current.validity.valid && (
-                <FormHelper><img src="/warning.svg" width={20} height={20} alt="" role="presentation" />{helper}</FormHelper>
-            )}
+        { helper && inputRef.current && !inputRef.current.validity.valid && (
+            <FormHelper><img src="/warning.svg" width={20} height={20} alt="" role="presentation" />{helper}</FormHelper>
+        )}
     </>
 }
 
-export const PhoneCodeDisplays = styled.div`
-
+export const PhoneMask = styled.div`
+    position: absolute;
+    top:8px;
+    left:101px;
+    font-Family: "Inter", system-ui;
+    font-weight: 400;
+    font-size: 16px;
+    pointer-events: none;
+    user-select: none;
+    color: #757D8A;
+    & > span:first-of-type{
+        color: transparent;
+    }
 `
 
 export const formatN = (n: string) => {

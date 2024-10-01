@@ -26,7 +26,7 @@ const NavComponent = ({className}:Props) => {
         }
     }
     /* eslint-disable @next/next/no-img-element */
-    return <nav className={className}>
+    return <nav className={`${className} ${status === 'success' ? 'all-success' : '' }`}>
         <div>{/* DON'T DELETE */}</div>
         <ul >
             <li onClick={() => gotoHandler(0)} className={`${(status === 'success' || max_step > 0) ?  'success' :  isMounted && step===0 ? 'current' : '' }`}><span>{(status === 'success' || max_step > 0) ? <img src="/check.svg" alt="checked" role="presentation" />  : 1}</span> Business structure</li>
@@ -59,7 +59,7 @@ export const Nav = styled(NavComponent)`
         & li{
             margin: 0;
             padding: 0;
-            cursor: pointer;
+            cursor: default;
             white-space: nowrap;
             display: flex;
             align-items: center;
@@ -68,8 +68,6 @@ export const Nav = styled(NavComponent)`
             width: 40px;
             overflow: hidden;
             
-
-            /* Media query para pantallas de al menos 768px de ancho */
             @media (min-width: 768px) {
                 width: auto;
                 overflow: auto;
@@ -90,19 +88,24 @@ export const Nav = styled(NavComponent)`
             }
         }
         & li.current{
+            cursor: pointer;
             & span{
                 background-color: var(--primary-color);
                 color:white;
             }
         }
         & li.success{
-            cursor: default;
+            cursor: pointer;
             & span{
                 color:white;
                 background: #4ADE80;
 
             }
         }
+    }
+
+    &.all-success ul li.success {
+        cursor: default;
     }
 
 `
