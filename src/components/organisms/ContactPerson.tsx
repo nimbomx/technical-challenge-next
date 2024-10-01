@@ -8,7 +8,7 @@ import { FormGroup } from "../atoms/FormGroup"
 import { InputWithHelper } from "../molecules/InputWithHelper"
 import { Form } from "../atoms/Form"
 import { Label } from "../atoms/Label"
-import { PhoneInputWithHelper } from "../molecules/PhoneInputWithHelper"
+import { PhoneInput } from "../molecules/PhoneInput"
 
 export const ContactPerson = () => {
     const data = useFormStore( state => state.data )
@@ -54,13 +54,15 @@ export const ContactPerson = () => {
         </FormBlock>
         <FormBlock>
             <Label>Phone</Label>
-            <PhoneInputWithHelper value={data.contact.phone}  
+            <PhoneInput  
+                value={data.contact.phone} 
                 onChange={ e => updateData({contact:{...data.contact, phone:e}})}
                 required
-                helper="Please make sure your phone is correctly formed."/>
+                helper="Please make sure your phone number is correctly formed."
+            />
         </FormBlock>
 
         <ContinueButton />
-
+    {/* <pre style={{fontSize:"10px"}}>{JSON.stringify(data, null, 2)}</pre> */}
     </Form>
 }
