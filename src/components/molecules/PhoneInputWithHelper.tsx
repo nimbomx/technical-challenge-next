@@ -12,7 +12,7 @@ interface Props {
   required?: boolean;
   type?: string;
   value?: string;
-  onChange?: (value: string) => void;
+  onChange: (value: string) => void;
 }
 
 const formatN = (n: string) => {
@@ -46,9 +46,8 @@ export const PhoneInputWithHelper: FC<Props> = ({ required, helper, type, value,
     const formattedValue = formatN(rawValue);
     setFormatted(formattedValue);
     setRest('(000) 000-0000'.slice(formattedValue.length));
-    if (onChange) {
-      onChange(country.phone_code + ' ' + formattedValue);
-    }
+    if(formattedValue) onChange(country.phone_code + ' ' + formattedValue);
+    
     validateInput(formattedValue);
   },[inputRef, country])
 
@@ -63,7 +62,7 @@ export const PhoneInputWithHelper: FC<Props> = ({ required, helper, type, value,
 
   useEffect(() => {
     if (value) {
-      const rawValue = value.replace(/^.*?\(/, '(').replace(/\D/g, '');
+      const rawValue = value.includes("(") ? value.replace(/^.*?\(/, '(').replace(/\D/g, '') : '';
       const formattedValue = formatN(rawValue);
       setFormatted(formattedValue);
       setRest('(000) 000-0000'.slice(formattedValue.length));
