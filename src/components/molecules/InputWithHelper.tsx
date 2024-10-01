@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, FC, useRef, WheelEvent } from "react";
+import { ChangeEvent, FC, useRef } from "react";
 import { Input } from "../atoms/Input"
 import { FormHelper } from "../atoms/FormHelper";
 
