@@ -12,9 +12,10 @@ interface Props{
     value?:string
     pattern?:string
     maxLength?:number
+    max?:number
     onChange?:(value: string) => void;
 }
-export const InputWithHelper:FC<Props> = ({placeholder, required, helper, type, value, onChange, pattern, maxLength}) => {
+export const InputWithHelper:FC<Props> = ({placeholder, required, helper, type, value, onChange, pattern, maxLength, max}) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const onChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
         if(onChange){
@@ -32,6 +33,7 @@ export const InputWithHelper:FC<Props> = ({placeholder, required, helper, type, 
                 onChange={onChangeHandler}
                 value={value}
                 maxLength={maxLength}
+                max={max}
                 type={type}
                 placeholder={placeholder} 
                 required={required}  

@@ -62,7 +62,7 @@ export const BusinessStructure = () => {
                     onChange={ e => updateData({address:{...data.address, zip:e}})} 
                     placeholder="Zip"  
                     maxLength={5}
-                    type="number"
+                    // type="number"
                     pattern="\d{5}"
                     helper="Please enter exactly 5 numeric digits."
                     required
