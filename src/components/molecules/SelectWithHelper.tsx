@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, ReactNode, useRef } from "react";
 import { Select } from "../atoms/Select";
+import { FormHelper } from "../atoms/FormHelper";
 
 interface Props{
     placeholder?:string
@@ -17,8 +18,8 @@ export const SelectWithHelper:FC<Props> = ({placeholder, required, helper, child
             onChange(e.target.value)
         }
     }
-    return <>
-        <Select ref={selectRef} required={required} 
+    return <div>
+        <Select ref={selectRef} required={required} className={`${value ? '' : 'placeholder'}`}
             onChange={onChangeHandler}
             value={value}
             defaultValue={defaultValue} >
@@ -26,7 +27,7 @@ export const SelectWithHelper:FC<Props> = ({placeholder, required, helper, child
             {children}
         </Select>
         { helper && selectRef.current && !selectRef.current.validity.valid && (
-            <small>{helper}</small>
+            <FormHelper><img src="/warning.svg" width={20} height={20} alt="" role="presentation" />{helper}</FormHelper>
         )}
-    </>
+    </div>
 }

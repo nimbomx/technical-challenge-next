@@ -6,7 +6,7 @@ export const FormGroup = styled.div`
     flex: 1;
     justify-items: stretch;
     gap:8px;
-    & input, & select{
+    & input, & select, & div{
         flex:1;
         min-width: 0;
     }

@@ -7,10 +7,12 @@ import { FormBlock } from "../atoms/FormBlock"
 import { FormGroup } from "../atoms/FormGroup"
 import { InputWithHelper } from "../molecules/InputWithHelper"
 import { Form } from "../atoms/Form"
+import { Label } from "../atoms/Label"
+import { PhoneInputWithHelper } from "../molecules/PhoneInputWithHelper"
 
 export const ContactPerson = () => {
     const data = useFormStore( state => state.data )
-    const increment = useFormStore( state => state.increment )
+    const setMaxStep = useFormStore( state => state.setMaxStep )
     const updateData = useFormStore( state => state.updateData )
     const setStatus = useFormStore( state => state.setStatus )
     const [wasValidated, setWasValidated] = useState(false)
@@ -18,7 +20,7 @@ export const ContactPerson = () => {
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (e.currentTarget.checkValidity()) {
-            increment()
+            setMaxStep(2)
             setStatus('in_progress')
         } else {
             console.log("Formulario no válido");
@@ -28,28 +30,37 @@ export const ContactPerson = () => {
     }
     return <Form onSubmit={submitHandler} className={wasValidated ? 'was-validated' : ''} noValidate>
         <FormBlock>
+        <Label>Name</Label>
             <FormGroup>
                 <InputWithHelper value={data.contact.firstName}
                     onChange={ e => updateData({contact:{...data.contact, firstName:e}})}
-                    placeholder="First Name"  required/>
+                    placeholder="First Name"  required
+                    helper="First Name value is required"
+                    />
                 <InputWithHelper value={data.contact.lastName} 
                     onChange={ e => updateData({contact:{...data.contact, lastName:e}})}
-                    placeholder="Last Name"  required/>
+                    placeholder="Last Name"  required
+                    helper="Last Name value is required"
+                    />
             </FormGroup>
         </FormBlock>
         <FormBlock>
-            <label>Email</label>
+            <Label>Email</Label>
             <InputWithHelper value={data.contact.email} 
                 onChange={ e => updateData({contact:{...data.contact, email:e}})}
-                type="email" placeholder="Email"  required/>
+                type="email" placeholder="Email"  required
+                helper="Please make sure your email address is correctly formed."
+                />
         </FormBlock>
         <FormBlock>
-            <label>Phone</label>
-            <InputWithHelper value={data.contact.phone}  
+            <Label>Phone</Label>
+            <PhoneInputWithHelper value={data.contact.phone}  
                 onChange={ e => updateData({contact:{...data.contact, phone:e}})}
-                placeholder="(000) 000-0000"  required/>
+                required
+                helper="Please make sure your phone is correctly formed."/>
         </FormBlock>
 
         <ContinueButton />
+
     </Form>
 }

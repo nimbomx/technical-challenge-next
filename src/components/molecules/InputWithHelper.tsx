@@ -2,6 +2,7 @@
 
 import { ChangeEvent, FC, useRef } from "react";
 import { Input } from "../atoms/Input"
+import { FormHelper } from "../atoms/FormHelper";
 
 interface Props{
     placeholder?:string
@@ -9,9 +10,11 @@ interface Props{
     required?:boolean
     type?:string
     value?:string
+    pattern?:string
+    maxLength?:number
     onChange?:(value: string) => void;
 }
-export const InputWithHelper:FC<Props> = ({placeholder, required, helper, type, value, onChange}) => {
+export const InputWithHelper:FC<Props> = ({placeholder, required, helper, type, value, onChange, pattern, maxLength}) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const onChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
         if(onChange){
@@ -19,14 +22,20 @@ export const InputWithHelper:FC<Props> = ({placeholder, required, helper, type, 
         }
     }
     return <>
-        <Input ref={inputRef} 
-            onChange={onChangeHandler}
-            value={value}
-            type={type}
-            placeholder={placeholder} 
-            required={required}  />
-        { helper && inputRef.current && !inputRef.current.validity.valid && (
-            <small>{helper}</small>
-        )}
+        <div>
+            <Input ref={inputRef} 
+                onChange={onChangeHandler}
+                value={value}
+                maxLength={maxLength}
+                type={type}
+                placeholder={placeholder} 
+                required={required}  
+                pattern={pattern}
+                />
+                
+            { helper && inputRef.current && !inputRef.current.validity.valid && (
+                <FormHelper><img src="/warning.svg" width={20} height={20} alt="" role="presentation" />{helper}</FormHelper>
+            )}
+        </div>
     </>
 }

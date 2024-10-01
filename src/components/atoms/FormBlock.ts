@@ -5,4 +5,5 @@ export const FormBlock = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 14px;
+    gap: 16px;
 `

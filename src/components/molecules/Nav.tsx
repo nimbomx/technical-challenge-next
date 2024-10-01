@@ -11,18 +11,25 @@ interface Props{
 const NavComponent = ({className}:Props) => {
     const [isMounted, setIsMounted] = useState(false);
     const step = useFormStore( state => state.step )
+    const max_step = useFormStore( state => state.max_step )
+    const status = useFormStore( state => state.status )
     const setStep = useFormStore( state => state.setStep )
 
     useEffect(() => {
         setIsMounted(true);
     }, []);
 
+    const gotoHandler = (n:number) => {
+        if(status!= 'success'){
+            setStep(n)
+        }
+    }
     return <nav className={className}>
         <div>{/* DON'T DELETE */}</div>
         <ul >
-            <li onClick={() => setStep(0)} className={`${isMounted && step===0 ? 'current' : '' }`}><span>1</span> Business structure</li>
-            <li onClick={() => setStep(1)} className={`${isMounted && step===1 ? 'current' : '' }`}><span>2</span> Contact person</li>
-            <li onClick={() => setStep(2)} className={`${isMounted && step===2 ? 'current' : '' }`}><span>3</span> Preview & submit</li>
+            <li onClick={() => gotoHandler(0)} className={`${(status === 'success' || max_step > 0) ?  'success' :  isMounted && step===0 ? 'current' : '' }`}><span>{(status === 'success' || max_step > 0) ? <img src="/check.svg" alt="checked" role="presentation" />  : 1}</span> Business structure</li>
+            <li onClick={() => gotoHandler(1)} className={`${(status === 'success' || max_step > 1) ?  'success' :  isMounted && step===1 ? 'current' : '' }`}><span>{(status === 'success' || max_step > 1) ? <img src="/check.svg" alt="checked" role="presentation" />  : 2}</span> Contact person</li>
+            <li onClick={() => gotoHandler(2)} className={`${(status === 'success' || max_step > 2) ?  'success' :  isMounted && step===2 ? 'current' : '' }`}><span>{status === 'success' ? <img src="/check.svg" alt="checked" role="presentation" />  : 3}</span> Preview & submit</li>
         </ul>
     </nav>
 }
@@ -84,6 +91,14 @@ export const Nav = styled(NavComponent)`
             & span{
                 background-color: var(--primary-color);
                 color:white;
+            }
+        }
+        & li.success{
+            cursor: default;
+            & span{
+                color:white;
+                background: #4ADE80;
+
             }
         }
     }
