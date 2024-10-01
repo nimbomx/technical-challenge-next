@@ -1,5 +1,6 @@
+import { CountryType } from "@/types/Country.type";
 
-export const countries = [
+export const countries:CountryType[] = [
   {
     "name": "United States",
     "phone_code": "+1",
