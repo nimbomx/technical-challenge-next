@@ -50,7 +50,7 @@ export const PhoneInputWithHelper: FC<Props> = ({ required, helper, type, value,
       onChange(country.phone_code + ' ' + formattedValue);
     }
     validateInput(formattedValue);
-  },[inputRef, onChange, country])
+  },[inputRef, country])
 
     useEffect( () => {
         updatePhoneValue()

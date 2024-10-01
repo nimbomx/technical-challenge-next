@@ -5,11 +5,11 @@ import { FC } from "react";
 
 /* eslint-disable @next/next/no-img-element */
 export const StartOverButton:FC = () => {
-    const setStep = useFormStore(state =>  state.setStep )
+    const setMaxStep = useFormStore(state =>  state.setMaxStep )
     const setStatus = useFormStore(state =>  state.setStatus )
     const clearData = useFormStore(state =>  state.clearData )
     const startOver = () => {
-        setStep(0)
+        setMaxStep(0)
         setStatus("init")
         clearData()
     }

@@ -20,6 +20,7 @@ const NavComponent = ({className}:Props) => {
     }, []);
 
     const gotoHandler = (n:number) => {
+        if(n > max_step) return
         if(status!= 'success'){
             setStep(n)
         }
