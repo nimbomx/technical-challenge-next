@@ -2,7 +2,7 @@ import useFormStore from "@/stores/form.store"
 import { FormEvent } from "react"
 import { ConfirmButton } from "../molecules/ConfirmButton"
 import { Form } from "../atoms/Form"
-import { FormBlock } from "../atoms/FormBlock"
+import { FormBlock, FormBlockTitle } from "../atoms/FormBlock"
 import { EditButton } from "../atoms/EditButton"
 import { StartOverButton } from "../molecules/StartOverButton"
 import { Alert } from "../atoms/Alert"
@@ -43,15 +43,10 @@ export const ReviewNSubmit = () => {
     }
     return <Form onSubmit={submitHandler}>
         <FormBlock>
-            <div style={{
-                display:"flex",
-                gap:"8px",
-                alignItems: "baseline",
-                marginBottom: "30px"
-            }}>
+            <FormBlockTitle>
                 <Label>Business structure</Label>
                 <EditButton onClick={() => setStep(0)}>Edit</EditButton>
-            </div>
+            </FormBlockTitle>
             <PreviewField>
                 <div>Name:</div>
                 <div>{data.name}</div>                
@@ -71,15 +66,10 @@ export const ReviewNSubmit = () => {
         </FormBlock>
 
         <FormBlock>
-            <div style={{
-                    display:"flex",
-                    gap:"8px",
-                    alignItems: "baseline",
-                    marginBottom: "30px"
-                }}>
+            <FormBlockTitle>
                 <Label>Contact person</Label>
                 <EditButton onClick={() => setStep(1)}>Edit</EditButton>
-            </div>
+            </FormBlockTitle>
             <PreviewField>
                 <div>Name: </div>
                 <div>{data.contact.firstName} {data.contact.lastName}</div>
