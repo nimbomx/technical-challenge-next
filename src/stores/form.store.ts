@@ -6,11 +6,13 @@ import { FormData } from '@/types/FormData.type';
 interface FormStoreState {
   data: FormData;
   step: number;
+  message: string;
   max_step: number;
   status: keyof typeof FORM_STATUS;
   increment: () => void;
   setStep: (step:number) => void;
   setMaxStep: (max_step:number) => void;
+  setMessage: (message:string) => void;
   setStatus: (status:keyof typeof FORM_STATUS) => void;
   updateData: (newData: Partial<FormData>) => void;
   clearData: () => void;
@@ -39,6 +41,7 @@ const useFormStore = create<FormStoreState>()(
             data: EMPTY,
             step: 0,
             max_step: 0,
+            message: '',
             status: 'in_progress',
             increment: () => set((state) => {
                 return ({ 
@@ -48,6 +51,7 @@ const useFormStore = create<FormStoreState>()(
             setStep: (step) => set(() => ({ step})),
             setMaxStep: (max_step) => set(() => ({ max_step, step:max_step})),
             setStatus: (status) => set(() => ({ status }) ),
+            setMessage: (message) => set(() => ({ message }) ),
             updateData: (newData) => set((state) => ({
                 status: 'in_progress',
                 data: {

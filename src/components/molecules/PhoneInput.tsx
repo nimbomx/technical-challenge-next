@@ -20,6 +20,9 @@ export const PhoneInput:FC<Props> = ({required, helper, value, onChange}) => {
     const [formatted, setFormatted] = useState('');
 
     useEffect(() => {
+        if(formatted === ''){ //for some reason on first load formatted become '' when value is not
+            if(value != '') return
+        }
         onChange(country.phone_code +' '+formatted)
     },[country])
 
@@ -39,7 +42,7 @@ export const PhoneInput:FC<Props> = ({required, helper, value, onChange}) => {
     }
     useEffect(() => {
         updatePhoneNumberValue()
-      }, [value]);
+    }, [value]);
 
     useEffect(() => {
         updatePhoneValues()

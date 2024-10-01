@@ -1,5 +1,5 @@
 import useFormStore from "@/stores/form.store"
-import { FormEvent, useState } from "react"
+import { FormEvent } from "react"
 import { ConfirmButton } from "../molecules/ConfirmButton"
 import { Form } from "../atoms/Form"
 import { FormBlock } from "../atoms/FormBlock"
@@ -11,12 +11,11 @@ import { PreviewField } from "../atoms/PreviewField"
 
 export const ReviewNSubmit = () => {
     const data = useFormStore( state => state.data )
+    const message = useFormStore( state => state.message )
     const status = useFormStore( state => state.status )
     const setStatus = useFormStore( state => state.setStatus )
     const setStep = useFormStore( state => state.setStep )
-
-    const [error_message, setErrorMessage] = useState('')
-    const [success_message, setSuccessMessage] = useState('')
+    const setMessage = useFormStore( state => state.setMessage )
 
     const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -28,17 +27,17 @@ export const ReviewNSubmit = () => {
         if(res.ok){
             if(output.status === 'ok') {
                 setStatus('success')
-                setSuccessMessage(output.message)
+                setMessage(output.message)
             }
             //ERROR 200
             if(output.status === 'error') {
                 setStatus('error')
-                setErrorMessage(output.message)
+                setMessage(output.message)
             }
         }else{
             //ERROR 500
             setStatus('error')
-            setErrorMessage(output.message)
+            setMessage(output.message)
         }
         
     }
@@ -97,11 +96,11 @@ export const ReviewNSubmit = () => {
         </FormBlock>
 
         
-        {status === 'success' && <Alert variant="success">{success_message}</Alert>}
+        {status === 'success' && <Alert variant="success">{message}</Alert>}
 
         {status != 'success' &&<ConfirmButton />}
         {status === 'success' && <StartOverButton />}
 
-        {status === 'error' && <Alert>{error_message}</Alert>}
+        {status === 'error' && <Alert>{message}</Alert>}
     </Form>
 }

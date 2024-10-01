@@ -2,7 +2,7 @@
 
 import useFormStore from "@/stores/form.store"
 import { ContinueButton } from "../molecules/ContinueButton"
-import { FormEvent, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import { FormBlock } from "../atoms/FormBlock"
 import { FormGroup } from "../atoms/FormGroup"
 import { InputWithHelper } from "../molecules/InputWithHelper"
@@ -26,8 +26,8 @@ export const ContactPerson = () => {
             console.log("Formulario no válido");
         }
         setWasValidated(true)
-        
     }
+
     return <Form onSubmit={submitHandler} className={wasValidated ? 'was-validated' : ''} noValidate>
         <FormBlock>
         <Label>Name</Label>
@@ -63,6 +63,6 @@ export const ContactPerson = () => {
         </FormBlock>
 
         <ContinueButton />
-    {/* <pre style={{fontSize:"10px"}}>{JSON.stringify(data, null, 2)}</pre> */}
+        {/* <pre style={{fontSize:"10px"}}>{JSON.stringify(data, null, 2)}</pre> */}
     </Form>
 }
