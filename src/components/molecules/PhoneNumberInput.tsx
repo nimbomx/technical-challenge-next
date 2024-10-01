@@ -5,17 +5,17 @@ import { ChangeEvent, FC, useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import { Input } from "../atoms/Input"
 import { FormHelper } from "../atoms/FormHelper"
-import { CountryType } from "@/types/Country.type"
+import useFormStore from "@/stores/form.store"
 
 interface Props{
     value:string
     helper?:string
-    country:CountryType
     required?:boolean
     onChange: (value:string) => void
 }
 
-export const PhoneNumberInput:FC<Props> = ({value, helper, onChange, country, required}) => {
+export const PhoneNumberInput:FC<Props> = ({value, helper, onChange, required}) => {
+    const country = useFormStore( state => state.country )
     const inputRef = useRef<HTMLInputElement>(null);
     const [mask, setMask] = useState('(000) 000-0000');
 

@@ -3,7 +3,6 @@
 
 import { countries } from "@/constants/COUNTRIES"
 import useFormStore from "@/stores/form.store"
-import { CountryType } from "@/types/Country.type"
 import { ChangeEvent, FC } from "react"
 import styled from "styled-components"
 

@@ -1,7 +1,6 @@
 'use client'
 
 import { FC, useEffect, useState } from "react";
-import { countries } from "@/constants/COUNTRIES";
 import { PhoneCodeSelector } from "./PhoneCodeSelector";
 import { formatN, PhoneNumberInput } from "./PhoneNumberInput";
 import styled from "styled-components";
@@ -17,9 +16,7 @@ interface Props{
 
 export const PhoneInput:FC<Props> = ({required, helper, value, onChange}) => {
     
-
     const country = useFormStore( state => state.country )
-    const setCountry = useFormStore( state => state.setCountry )
     const [formatted, setFormatted] = useState('');
 
     useEffect(() => {
@@ -41,11 +38,11 @@ export const PhoneInput:FC<Props> = ({required, helper, value, onChange}) => {
         updatePhoneNumberValue()
     }, [value]);
 
-
     return <>
         <PhoneCanvas>
             <PhoneCodeSelector />
-            <PhoneNumberInput value={formatted} helper={helper} required={required} country={country} onChange={onChange} />
+            <PhoneNumberInput value={formatted} helper={helper} 
+                required={required} onChange={onChange} />
         </PhoneCanvas>
     </>
 }
