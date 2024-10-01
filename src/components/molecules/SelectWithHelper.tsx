@@ -13,7 +13,9 @@ interface Props{
 export const SelectWithHelper:FC<Props> = ({placeholder, required, helper, children, defaultValue, value, onChange}) => {
     const selectRef = useRef<HTMLSelectElement>(null);
     const onChangeHandler = (e:ChangeEvent<HTMLSelectElement>) => {
-        onChange && onChange(e.target.value)
+        if(onChange){
+            onChange(e.target.value)
+        }
     }
     return <>
         <Select ref={selectRef} required={required} 

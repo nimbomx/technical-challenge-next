@@ -7,7 +7,7 @@ import { EditButton } from "../atoms/EditButton"
 
 export const ReviewNSubmit = () => {
     const data = useFormStore( state => state.data )
-    const increment = useFormStore( state => state.increment )
+    // const increment = useFormStore( state => state.increment )
     const setStatus = useFormStore( state => state.setStatus )
     const setStep = useFormStore( state => state.setStep )
 

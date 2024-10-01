@@ -14,7 +14,9 @@ interface Props{
 export const InputWithHelper:FC<Props> = ({placeholder, required, helper, type, value, onChange}) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const onChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
-        onChange && onChange(e.target.value)
+        if(onChange){
+            onChange(e.target.value)
+        }
     }
     return <>
         <Input ref={inputRef} 
