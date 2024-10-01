@@ -18,6 +18,12 @@ export const Select = styled.select<Props>`
     
     padding-left: 16px;
     padding-right: 16px;
+    appearance: none;
+    background-image: url('/caret-down.svg');
+    background-repeat: no-repeat;
+    background-position: calc(100% - 16px) 11px;
+    background-size: 14px 7px;
+
     &.placeholder {
         color: #757D8A;
     }
