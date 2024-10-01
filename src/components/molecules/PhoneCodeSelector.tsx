@@ -49,7 +49,7 @@ export const PhoneCodeDisplay = styled.div`
     top:7px;
     left:8px;
     gap:8px;
-    & img {
+    & img:first-of-type {
         filter: drop-shadow(0px 0px 1px rgb(0 0 0 / 0.4));
     }
     & span {

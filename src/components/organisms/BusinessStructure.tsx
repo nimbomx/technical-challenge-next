@@ -2,7 +2,7 @@
 
 import useFormStore from "@/stores/form.store"
 import { ContinueButton } from "../molecules/ContinueButton"
-import { FormEvent, useState } from "react"
+import { FormEvent, useRef, useState } from "react"
 import { company_types } from "@/constants/COMPANY_TYPES"
 import { FormBlock } from "../atoms/FormBlock"
 import { FormGroup } from "../atoms/FormGroup"
@@ -18,18 +18,24 @@ export const BusinessStructure = () => {
     const setMaxStep = useFormStore( state => state.setMaxStep )
     const updateData = useFormStore( state => state.updateData )
     const [wasValidated, setWasValidated] = useState(false)
+    const formRef = useRef<HTMLFormElement>(null)
 
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const form = formRef.current;
         if (e.currentTarget.checkValidity()) {
             setMaxStep(1)
         } else {
             console.log("Formulario no válido");
+
+            // Focus first invalid field
+            const firstInvalidElement = form?.querySelector<HTMLElement>(':invalid');
+            firstInvalidElement?.focus();
         }
         setWasValidated(true)
         
     }
-    return <Form onSubmit={submitHandler}  className={wasValidated ? 'was-validated' : ''} noValidate >
+    return <Form onSubmit={submitHandler}  className={wasValidated ? 'was-validated' : ''} noValidate ref={formRef} >
         <FormBlock>
             <Label>Business name</Label>
             <InputWithHelper value={data.name} onChange={ e => updateData({name:e})} placeholder="Registered business name" required helper="Business name id required" />

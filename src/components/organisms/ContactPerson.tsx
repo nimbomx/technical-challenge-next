@@ -2,7 +2,7 @@
 
 import useFormStore from "@/stores/form.store"
 import { ContinueButton } from "../molecules/ContinueButton"
-import { FormEvent, useState } from "react"
+import { FormEvent, useRef, useState } from "react"
 import { FormBlock } from "../atoms/FormBlock"
 import { FormGroup } from "../atoms/FormGroup"
 import { InputWithHelper } from "../molecules/InputWithHelper"
@@ -16,19 +16,23 @@ export const ContactPerson = () => {
     const updateData = useFormStore( state => state.updateData )
     const setStatus = useFormStore( state => state.setStatus )
     const [wasValidated, setWasValidated] = useState(false)
+    const formRef = useRef<HTMLFormElement>(null)
 
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const form = formRef.current;
         if (e.currentTarget.checkValidity()) {
             setMaxStep(2)
             setStatus('in_progress')
         } else {
-            console.log("Formulario no válido");
+            // Focus first invalid field
+            const firstInvalidElement = form?.querySelector<HTMLElement>(':invalid');
+            firstInvalidElement?.focus();
         }
         setWasValidated(true)
     }
 
-    return <Form onSubmit={submitHandler} className={wasValidated ? 'was-validated' : ''} noValidate>
+    return <Form onSubmit={submitHandler} className={wasValidated ? 'was-validated' : ''} noValidate ref={formRef} >
         <FormBlock>
         <Label>Name</Label>
             <FormGroup>
