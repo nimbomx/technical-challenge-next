@@ -24,6 +24,7 @@ const NavComponent = ({className}:Props) => {
             setStep(n)
         }
     }
+    /* eslint-disable @next/next/no-img-element */
     return <nav className={className}>
         <div>{/* DON'T DELETE */}</div>
         <ul >

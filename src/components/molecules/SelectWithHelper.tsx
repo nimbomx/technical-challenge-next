@@ -11,6 +11,7 @@ interface Props{
     children?: ReactNode | ReactNode[],
     onChange?:(value: string) => void;
 }
+/* eslint-disable @next/next/no-img-element */
 export const SelectWithHelper:FC<Props> = ({placeholder, required, helper, children, defaultValue, value, onChange}) => {
     const selectRef = useRef<HTMLSelectElement>(null);
     const onChangeHandler = (e:ChangeEvent<HTMLSelectElement>) => {

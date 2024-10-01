@@ -21,6 +21,7 @@ export const InputWithHelper:FC<Props> = ({placeholder, required, helper, type, 
             onChange(e.target.value)
         }
     }
+    /* eslint-disable @next/next/no-img-element */
     return <>
         <div>
             <Input ref={inputRef} 

@@ -1,9 +1,11 @@
 'use client'
 
-import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FC, useCallback, useEffect, useRef, useState } from "react";
 import { Input } from "../atoms/Input";
 import { FormHelper } from "../atoms/FormHelper";
 import { countries } from "@/constants/COUNTRIES";
+
+/* eslint-disable @next/next/no-img-element */
 
 interface Props {
   helper?: string;
@@ -39,8 +41,8 @@ export const PhoneInputWithHelper: FC<Props> = ({ required, helper, type, value,
     const rawValue = e.target.value.replace(/\D/g, '');
     updatePhoneValue(rawValue)
   };
-  const updatePhoneValue = (value?:string) => {
-    let rawValue = value || inputRef.current?.value.replace(/\D/g, '')!
+  const updatePhoneValue = useCallback((value?:string) => {
+    const rawValue = value || inputRef.current?.value.replace(/\D/g, '') || ''
     const formattedValue = formatN(rawValue);
     setFormatted(formattedValue);
     setRest('(000) 000-0000'.slice(formattedValue.length));
@@ -48,11 +50,11 @@ export const PhoneInputWithHelper: FC<Props> = ({ required, helper, type, value,
       onChange(country.phone_code + ' ' + formattedValue);
     }
     validateInput(formattedValue);
-  }
+  },[inputRef, onChange, country])
 
     useEffect( () => {
         updatePhoneValue()
-    },[country])
+    },[country, updatePhoneValue])
 
   const validateInput = (value: string) => {
     const pattern = /^\(\d{3}\) \d{3}-\d{4}$/;
